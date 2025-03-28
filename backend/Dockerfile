@@ -4,7 +4,7 @@ ENV DOTNET_USE_POLLING_FILE_WATCHER=1
 ENV DOTNET_ENVIRONMENT=Development
 ENV ASPNETCORE_URLS=https://+:8080
 ENV ASPNETCORE_Kestrel__Certificates__Default__Password="password"
-ENV ASPNETCORE_Kestrel__Certificates__Default__Path="/app/https-cert.pfx"
+ENV ASPNETCORE_Kestrel__Certificates__Default__Path="/app/backend/https-cert.pfx"
 ENV PATH="/root/.dotnet/tools:/opt/mssql-tools18/bin:${PATH}"
 ENV ACCEPT_EULA=Y
 
@@ -36,7 +36,7 @@ COPY . $WORKDIR
 
 RUN dotnet restore
 RUN dotnet tool install --global dotnet-ef
-COPY https-cert.pfx /app/https-cert.pfx
+COPY https-cert.pfx /app/backend/https-cert.pfx
 
 ENTRYPOINT ["dotnet"]
 CMD ["watch", "run"]
